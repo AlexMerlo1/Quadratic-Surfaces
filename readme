@@ -1,0 +1,29 @@
+How to run
+###
+pip install numpy matplotlib
+python QuadraticSolver.py 
+# How to create a visualization:
+quad = QuadraticSurface(A=2, B=0, C=13, D=4, E=7, F=6, G=2, H=3, I=7, J=3) # Can use any 
+quad.QR_Factor()
+eigenvalues = get_eigenvals(quad.new_Mat_A)
+ax3 = fig.add_subplot(133, projection='3d')  
+create_plot(ax3, quad, eigenvalues) # Will need to remove previous create_plot(ax3) if one already exists
+
+###
+
+1. Format
+The class QuadraticSurface recieves a quadratic equaction 
+Ax2 + By2 + Cz2 + Dxy + Exz + F yz + Gx + Hy + Iz + J = 0 in the form
+A, B, C, D, E, F, G, H, I, J and creates a symmetric matrix M by keeping the diagonal the same and dividing all the other elements by 2 and putting the x,y,z in a b matrix and disregarding the constant.
+2. QR Algorithm
+Implemented Gram-Schmidt algorithm from Thm 6.2 up to w3 which is used to find the QR factorization of M found previously. After the QR factorization is ran 900 times the values of the diagonal are a good representation of the eigenvalues.
+3. Finding the shape
+Using the eigenvalues found a function is called to find the signiture of the quadratic surface and determine the shape. The eigenvalues depending on whether they are negetive, positive, or 0 will result in the shape being different.
+4. Visualization
+Creates 3 plots of 3 different quadratic surfaces 
+QuadraticSurface(A=2, B=0, C=13, D=4, E=7, F=6, G=2, H=3, I=7, J=3)
+QuadraticSurface(A=1, B=1, C=0, D=0, E=0, F=0, G=0, H=0, I=0, J=0)
+QuadraticSurface(A=1, B=1, C=1, D=0, E=0, F=0, G=0, H=0, I=0, J=-1)
+The x and y axis have a range from -5 to 5 but the z axis uses the shape to determine the value and where the points should be plotted.
+
+
